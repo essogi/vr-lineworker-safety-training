@@ -1,7 +1,7 @@
 # Technique: The Player-Interaction Layer
 
 This document is a deep dive into the C# interaction layer I (Peter Castelein) wrote for
-the simulation — the virtual tools a lineworker uses to prepare power lines for repair,
+the simulation: the virtual tools a lineworker uses to prepare power lines for repair,
 and the logic that decides whether they did it safely. Everything here is written against
 Unity's **XR Interaction Toolkit 2.2.0** (XRI), running on the Oculus XR Plugin on a
 Meta Quest 2.
@@ -31,7 +31,7 @@ extends XRI's `XRGrabInteractable` to make the shotgun rod a genuinely two-hande
 - **Two-hand rotation solve.** While both hands hold the rod, its orientation is
   computed each interaction update as a `Quaternion.LookRotation` from the primary
   attach transform toward the second hand, with three configurable up-vector modes
-  (`None` / `First` / `Second`) to control roll. One hand aims, the other steers —
+  (`None` / `First` / `Second`) to control roll. One hand aims, the other steers,
   the same way a real hot stick is handled.
 - **Midgrab-to-far-grab reach extension.** On second-hand grab, the first-hand attach
   point shifts 1.25 m down the shaft (`OnSecondHandGrab`), effectively letting the
@@ -66,9 +66,9 @@ home-return behavior as the rod.
 
 [`RenderLine.cs`](Assets/Scripts/ShotgunRod/RenderLine.cs) draws the neutral line
 between a clamp pair's two hooks with a `LineRenderer` whose endpoints re-anchor to
-the hook transforms every frame — so as hooks get grabbed, carried on the rod tip, and
-snapped onto power lines, the line follows wherever its endpoints go. Together with the
-reach extension, this is the "light procedural elements" of the interaction layer:
+the hook transforms every frame, so as hooks get grabbed, carried on the rod tip, and
+snapped onto power lines, the line follows wherever its endpoints go. Together with
+the reach extension, this is the "light procedural elements" of the interaction layer:
 geometry generated at runtime from interaction state rather than authored in the scene.
 
 ## Scoring and infractions
@@ -96,18 +96,18 @@ only *report* what happened; `Tracker` alone knows what "correct" means.
 ## Experiment integration
 
 The simulation doubles as a human-subjects experiment comparing instruction modalities
-(4 instruction/highlight conditions × 2 environment conditions — see the
+(4 instruction/highlight conditions × 2 environment conditions; see the
 [research paper](docs/Final%20Research%20Paper.pdf)).
-[`PanelManager.cs`](Assets/Scripts/PanelManager.cs) — created by Robin Schniebel, with
-my edits to the instruction copy and experiment flow — drives scenario selection and
+[`PanelManager.cs`](Assets/Scripts/PanelManager.cs), created by Robin Schniebel with
+my edits to the instruction copy and experiment flow, drives scenario selection and
 the per-condition instruction panels, and surfaces `Tracker`'s report as the
 participant's results screen.
 
 ## Authorship
 
-Per `git log --follow` on the original team repository. Robin's `PACreated/` folder is
-XR scaffolding (teleport ray, hand animation, collectables) he brought in when creating
-the project.
+Per `git log --follow` on the original team repository. The `PACreated/` folder is a
+course-provided blank XR template (teleport ray, hand animation, collectables) that
+came with the project when it was created, not project-specific work.
 
 | Area | Files | Author(s) |
 |---|---|---|
@@ -118,6 +118,6 @@ the project.
 | Bucket & truck controls | `BucketControls/*`, `TruckTP/*`, `TruckMovement.cs` | Robin Schniebel (Peter: minor edits to `TruckMovement.cs`) |
 | Highlight system | `Highlight scripts/*` | Robin Schniebel (created), Peter Castelein |
 | Sound | `SoundEngine.cs` | Robin Schniebel |
-| XR scaffolding | `PACreated/*` | Robin Schniebel |
+| Course XR template | `PACreated/*` | Course-provided (committed by Robin Schniebel) |
 
 Environment art and 3D assets by Sarah Luster and Soha Aftab (no code commits).
