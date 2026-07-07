@@ -1,0 +1,14 @@
+# local process docs — never published
+docs/superpowers/
+
+# binaries live in GitHub Releases, not git
+*.apk
+*.mp4
+*.mkv
+
+# Unity editor metadata (scripts published bare)
+*.meta
+
+# macOS junk from the archive
+._*
+.DS_Store
