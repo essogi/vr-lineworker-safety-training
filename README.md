@@ -37,8 +37,7 @@ zone.
 
 Grab `ElectricLineWorker.apk` from the
 [v1.0 release](../../releases/tag/v1.0) and sideload it onto a Quest 2 (via
-[SideQuest](https://sidequestvr.com/) or `adb install`). Full demo videos are attached
-to the release too.
+[SideQuest](https://sidequestvr.com/) or `adb install`).
 
 Setup for best results:
 
