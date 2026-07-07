@@ -40,8 +40,8 @@ extends XRI's `XRGrabInteractable` to make the shotgun rod a genuinely two-hande
   survives in the file as commented-out code.
 - **Drop recovery.** A dropped rod that stays below its home height starts a ground
   timer; on expiry its velocity is zeroed and it teleports back to its home transform,
-  and the drop is reported to the scoring engine via `Tracker.droppedPole()` — tool
-  drops are an OSHA-relevant metric, so they count against the run.
+  and the drop is reported to the scoring engine via `Tracker.droppedPole()`, so
+  fumbled tools count against the run.
 
 ## Clamp and power-check sockets
 
@@ -67,7 +67,7 @@ home-return behavior as the rod.
 [`RenderLine.cs`](Assets/Scripts/ShotgunRod/RenderLine.cs) draws the neutral line
 between a clamp pair's two hooks with a `LineRenderer` whose endpoints re-anchor to
 the hook transforms every frame — so as hooks get grabbed, carried on the rod tip, and
-snapped onto power lines, the line follows and sags into place. Together with the
+snapped onto power lines, the line follows wherever its endpoints go. Together with the
 reach extension, this is the "light procedural elements" of the interaction layer:
 geometry generated at runtime from interaction state rather than authored in the scene.
 
